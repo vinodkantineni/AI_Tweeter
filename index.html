@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrandVoice AI - Tweet Generator</title>
+    <meta name="description" content="Generate on-brand AI tweets effortlessly with our tone-matching algorithm.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-mesh"></div>
+    <div class="container">
+        <!-- Main Form UI -->
+        <header>
+            <h1 class="gradient-text">BrandVoice AI</h1>
+            <p>Generate perfectly tailored tweets in your brand's unique tone.</p>
+        </header>
+
+
+
+        <section class="form-section glass-panel">
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="brandName">Brand Name <span class="optional">(Optional)</span></label>
+                    <input type="text" id="brandName" placeholder="e.g. Acme Corp">
+                </div>
+                <div class="input-group">
+                    <label for="industry">Industry / Category <span class="optional">(Optional)</span></label>
+                    <input type="text" id="industry" placeholder="e.g. SaaS, Fashion">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="objective">Campaign Objective</label>
+                <select id="objective">
+                    <option value="Engagement">Engagement</option>
+                    <option value="Promotion">Promotion (Sales/Signups)</option>
+                    <option value="Awareness">Brand Awareness</option>
+                    <option value="Educational">Educational</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="productDesc">Product / Brand Description <span class="required">*</span></label>
+                <textarea id="productDesc" rows="4"
+                    placeholder="Describe the products, target audience, or recent updates..."></textarea>
+            </div>
+
+            <button id="generateBtn" class="primary-btn">
+                <span class="btn-text">Generate Tweets</span>
+                <span class="loader hidden" id="btnLoader"></span>
+            </button>
+        </section>
+
+        <!-- Results UI -->
+        <section id="resultsSection" class="results-section hidden">
+            <div class="glass-panel summary-panel">
+                <h2>📊 Brand Voice Summary</h2>
+                <div id="voiceSummary"></div>
+            </div>
+
+            <div class="glass-panel tweets-panel">
+                <h2>🐦 10 Generated Tweets</h2>
+                <div id="tweetsList" class="tweets-grid"></div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>Designed by Vinod Kumar</p>
+        </footer>
+    </div>
+    <!-- Workflow Modal -->
+    <div id="workflowModal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h2>🤖 Further Implementation Plan</h2>
+                <button id="closeModal" class="close-btn">&times;</button>
+            </div>
+            <div class="workflow-container">
+                <div class="workflow-step step-1">Input mail</div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-step step-2">Take data from the mail</div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-step step-3">Brand voice Analysis</div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-step step-4">Content Generation</div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-step step-5">Verify and validate</div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-step step-6">Send back mail</div>
+                <div class="workflow-arrow">↓</div>
+                <div class="workflow-step step-7">Company Review</div>
+            </div>
+
+            <div class="workflow-description">
+                <p>This automated agentic workflow operates entirely via email. It extracts briefs directly from
+                    incoming emails, infers the brand voice, generates 10 tailored tweets, and replies to the client
+                    autonomously for review and validation.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Icon -->
+    <div class="help-icon" id="helpIcon" title="View Automated Workflow">
+        ?
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

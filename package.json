@@ -1,0 +1,12 @@
+{
+  "name": "tweet_generator_app",
+  "version": "1.0.0",
+  "description": "A simple, beautiful AI-powered web workflow tool that generates 10 on-brand tweets for any given brand using Google's Gemini 1.5 Flash API. This project was created as an AI Internship Assignment.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
