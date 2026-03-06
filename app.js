@@ -77,15 +77,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function generateBrandData(brandName, industry, objective, productDesc) {
         // API KEY NEEDED HERE to make live dynamic requests
-        const API_KEY = "YOUR_GEMINI_API_KEY_HERE";
-        
-        if (API_KEY === "YOUR_GEMINI_API_KEY_HERE") {
+        const API_KEY = "AIzaSyCs23FvoRUg0ggBISrnEiL2u_FnOhfpzGU";
+
+        if (API_KEY === "YOUR_GEMINI_API_KEY_HERE" || API_KEY === "YOUR_NEW_KEY_GOES_HERE" || !API_KEY) {
             // Failsafe in case user forgets to add key
-            throw new Error("Please insert your Gemini API Key directly into the app.js code (line 80) to enable live dynamic generation.");
+            throw new Error("Please insert your real Gemini API Key directly into the app.js code (line 80) to enable live dynamic generation.");
         }
 
-        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
-        
+        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+
         // Construct the prompt using the dynamic form variables
         const prompt = `
         You are an expert Social Media Manager and Copywriter.
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         Respond ONLY with the JSON object. Do not include markdown blocks or any other text before or after the JSON.
         `;
-        
+
         const response = await fetch(endpoint, {
             method: 'POST',
             headers: {
@@ -146,20 +146,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             })
         });
-        
+
         if (!response.ok) {
             const errData = await response.json();
             throw new Error(errData.error?.message || "Failed to communicate with Gemini API.");
         }
-        
+
         const data = await response.json();
-        
+
         // Extract raw text from the Gemini response structure
         let rawText = data.candidates[0].content.parts[0].text;
-        
+
         // Clean up markdown syntax if Gemini included it despite instructions
         rawText = rawText.replace(/```json/gi, '').replace(/```/g, '').trim();
-        
+
         // Parse the dynamic JSON and return it securely
         try {
             return JSON.parse(rawText);
