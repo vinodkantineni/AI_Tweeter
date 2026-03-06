@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function generateBrandData(brandName, industry, objective, productDesc) {
         // API KEY NEEDED HERE to make live dynamic requests
-        const API_KEY = "AIzaSyCs23FvoRUg0ggBISrnEiL2u_FnOhfpzGU";
+        const API_KEY = "";
 
         if (API_KEY === "YOUR_GEMINI_API_KEY_HERE" || API_KEY === "YOUR_NEW_KEY_GOES_HERE" || !API_KEY) {
             // Failsafe in case user forgets to add key
