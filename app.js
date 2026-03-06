@@ -76,38 +76,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function generateBrandData(brandName, industry, objective, productDesc) {
-        // MOCK DATA FOR TESTING:
-        // Since the UI form for the API key was removed, we use mock data so the app can be tested locally
-        return new Promise(resolve => {
-            setTimeout(() => {
-                resolve({
-                    voiceSummary: [
-                        "Intense, inspirational, and highly motivational tone",
-                        "Appeals to athletes and fitness enthusiasts of all levels",
-                        "Focuses on pushing limits, determination, and premium athletic wear",
-                        "Uses short sentences, minimal emojis, and powerful statements"
-                    ],
-                    tweets: [
-                        { style: "Conversational", text: "Excuses don't build legacy. What's your goal today?" },
-                        { style: "Promotional", text: "The new Pegasus 40 is here. Lighter. Faster. Ready for miles. Shop now." },
-                        { style: "Witty/Meme-style", text: "They said it was impossible. We stopped listening." },
-                        { style: "Informative/Value-driven", text: "Recovery is just as important as the workout. Don't skip rest day." },
-                        { style: "Conversational", text: "One run can change your day. Just get out the door." },
-                        { style: "Promotional", text: "Members get early access to the latest drops. Join the club today." },
-                        { style: "Witty/Meme-style", text: "Hit snooze or hit PRs. Your choice." },
-                        { style: "Informative/Value-driven", text: "Engineered for speed, designed for comfort. See the tech behind the Alphafly." },
-                        { style: "Conversational", text: "Drop your weekend PRs below. 👇" },
-                        { style: "Promotional", text: "Save up to 30% on select running gear. Don't let the weather stop you." }
-                    ]
-                });
-            }, 1000); // Simulate 1 second API response time
-        });
-
-        /*
-        // ORIGINAL API FETCHER CODE (requires a server to store the key)
-        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=YOUR_SERVER_KEY`;
+        // API KEY NEEDED HERE to make live dynamic requests
+        const API_KEY = "YOUR_GEMINI_API_KEY_HERE";
         
-        // Construct the prompt
+        if (API_KEY === "YOUR_GEMINI_API_KEY_HERE") {
+            // Failsafe in case user forgets to add key
+            throw new Error("Please insert your Gemini API Key directly into the app.js code (line 80) to enable live dynamic generation.");
+        }
+
+        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
+        
+        // Construct the prompt using the dynamic form variables
         const prompt = `
         You are an expert Social Media Manager and Copywriter.
         
@@ -175,20 +154,19 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const data = await response.json();
         
-        // Extract raw text
+        // Extract raw text from the Gemini response structure
         let rawText = data.candidates[0].content.parts[0].text;
         
         // Clean up markdown syntax if Gemini included it despite instructions
         rawText = rawText.replace(/```json/gi, '').replace(/```/g, '').trim();
         
-        // Parse JSON
+        // Parse the dynamic JSON and return it securely
         try {
             return JSON.parse(rawText);
         } catch (e) {
             console.error("Failed to parse JSON string:", rawText);
             throw new Error("AI returned malformed data. Please try again.");
         }
-        */
     }
 
     function renderSummary(summaryArray) {
